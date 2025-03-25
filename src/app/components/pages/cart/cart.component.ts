@@ -9,10 +9,17 @@ import { CartItemComponent } from "./cart-item/cart-item.component";
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
+
   cartService = inject(CartService);
 
+  cartItems() {
+    return this.cartService.getCartItems();
+  }
+  totalItems() {
+    return this.cartService.getTotalItems();
+  }
 
-  cartItems = this.cartService.getCartItems();
-  totalPrice = computed(() => this.cartItems().reduce((sum, item) => sum + item.price, 0));
-
+  totalPrice() {
+    return this.cartService.getTotalPrice();
+  }
 }

@@ -7,7 +7,7 @@ import { Product } from '../models/product.model';
 export class CartService {
 
  // Private writable signal to manage cart items
- private cartItems = signal<Product[]>([]);
+ private cartItems = signal<Product[]>(this.loadCartFromLocalStorage());
 
  // Public readonly signal for components to subscribe to
  getCartItems() {
@@ -15,14 +15,41 @@ export class CartService {
  }
 
  addToCart(product: Product) {
-   this.cartItems.update(items => [...items, product]);
- }
+  this.cartItems.update(items => {
+    const updatedItems = [...items, product];
+    this.saveCartToLocalStorage(updatedItems); // Save to localStorage
+    return updatedItems;
+  });
+}
 
- removeFromCart(productId: number) {
-   this.cartItems.update(items => items.filter(item => item.id !== productId));
- }
+private saveCartToLocalStorage(cart: Product[]) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
 
- clearCart() {
-   this.cartItems.set([]);
- }
+  removeFromCart(productId: number) {
+    this.cartItems.update(items => {
+      const updatedItems = items.filter(item => item.id !== productId);
+      this.saveCartToLocalStorage(updatedItems); 
+      return updatedItems;
+    });
+  }
+
+  clearCart() {
+    this.cartItems.set([]);
+    localStorage.removeItem('cart'); // Clear from localStorage
+  }
+
+  // Load cart from localStorage
+  loadCartFromLocalStorage(): Product[] {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  }
+
+  getTotalItems(): number {
+    return this.cartItems().length;
+  }
+  
+  getTotalPrice(): number {
+    return this.cartItems().reduce((total, item) => total + item.price, 0);
+  }
 }

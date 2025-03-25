@@ -4,5 +4,5 @@
       <h5 class="mb-1 text-truncate">{{ item().title }}</h5>
       <p class="mb-0">{{ item().price | currency }}</p>
     </div>
-    <button class="btn btn-danger btn-sm ms-3" (click)="remove.emit(item().id)">Remove</button>
+    <button class="btn btn-danger btn-sm ms-3" (click)="cartService.removeFromCart(item().id)">Remove</button>
   </div>

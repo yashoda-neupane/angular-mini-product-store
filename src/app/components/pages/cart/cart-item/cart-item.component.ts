@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { Product } from '../../../../models/product.model';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -13,7 +14,8 @@ export class CartItemComponent {
 
   // Input as a signal using the input() function
   item = input.required<Product>();
+  cartService = inject(CartService);
 
-  // Output as a signal-like emitter using the output() function
-  remove = output<number>();
+  
+  
 }

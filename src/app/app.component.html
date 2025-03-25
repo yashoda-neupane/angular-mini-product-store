@@ -28,7 +28,7 @@
       </div>
     <div class="d-flex">
       <app-primary-button 
-        [label]="'Cart(' + cartService.cart().length + ')'"
+        [label]="'Cart(' + cartService.getCartItems()().length + ')'"
         routerLink="/cart"
         class="nav-link"
       /> 

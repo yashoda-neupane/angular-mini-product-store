@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
   productService = inject(ProductService);
 
+
   ngOnInit() {
     this.productService.getAllProducts().subscribe();
   }

@@ -6,12 +6,23 @@ import { Product } from '../models/product.model';
 })
 export class CartService {
 
-  cart = signal<Product[]>([]);
+ // Private writable signal to manage cart items
+ private cartItems = signal<Product[]>([]);
 
-  addToCart(product: Product) {
-    this.cart.set([...this.cart(), product]);
-  }
-  removeFromCart(product: Product) {
-    this.cart.set(this.cart().filter((p) => p.id !== product.id));
-  }  
+ // Public readonly signal for components to subscribe to
+ getCartItems() {
+   return this.cartItems.asReadonly();
+ }
+
+ addToCart(product: Product) {
+   this.cartItems.update(items => [...items, product]);
+ }
+
+ removeFromCart(productId: number) {
+   this.cartItems.update(items => items.filter(item => item.id !== productId));
+ }
+
+ clearCart() {
+   this.cartItems.set([]);
+ }
 }

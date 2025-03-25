@@ -1,0 +1,15 @@
+<div class="container my-4">
+    <h2 class="mb-3">Your Cart</h2>
+    @if (cartItems().length === 0) {
+      <p class="text-center text-muted">Your cart is empty</p>
+    } @else {
+      <div class="cart-items">
+        @for (item of cartItems(); track item.id) {
+          <app-cart-item [item]="item" (remove)="cartService.removeFromCart(item.id)"/>
+        }
+      </div>
+      <div class="d-flex justify-content-end mt-3">
+        <p class="fw-bold">Total: {{ totalPrice() }}</p>
+      </div>
+    }
+  </div>

@@ -1,28 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './services/auth.service';
-import { CartService } from './services/cart.service';
-import { PrimaryButtonComponent } from "./components/primary-button/primary-button.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PrimaryButtonComponent],
+  imports: [RouterOutlet, RouterModule, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'mini-product-store';
-
-  isAuthenticated: boolean;
-  username: string;
-  cartService = inject(CartService); 
-
-  constructor(private authService: AuthService) {
-    this.isAuthenticated = this.authService.isAuthenticated();
-    this.username = this.authService.username() ?? '';
-  }
-
-  logout() {
-    this.authService.logout();
-  }
 }

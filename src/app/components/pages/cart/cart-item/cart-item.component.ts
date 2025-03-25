@@ -15,7 +15,6 @@ export class CartItemComponent {
   // Input as a signal using the input() function
   item = input.required<Product>();
   cartService = inject(CartService);
-
-  
+  cartItems = this.cartService.getCartItems();
   
 }

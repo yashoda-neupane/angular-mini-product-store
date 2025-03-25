@@ -17,7 +17,7 @@ export const routes: Routes = [
     },
 
     {
-        path : 'app-add-product',
+        path : 'add-product',
         component: AddProductComponent
     },
     {

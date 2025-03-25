@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold" routerLink="/">Store</a>
+  
+      <!-- Toggler for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+          </li>
+          <ng-container *ngIf="authService.isAuthenticated()">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/add-product" routerLinkActive="active">Add Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/users" routerLinkActive="active">Dashboard</a>
+            </li>
+          </ng-container>
+        </ul>
+  
+        <!-- Right-side content -->
+        <div class="d-flex align-items-center">
+          <div class="navbar-text me-3">
+            <ng-container *ngIf="authService.isAuthenticated(); else loginLink">
+              Welcome, {{ username }}!
+              <button class="btn btn-link text-decoration-none" (click)="logout()">Logout</button>
+            </ng-container>
+            <ng-template #loginLink>
+              <a class="btn btn-link text-decoration-none" routerLink="/login">Login</a>
+            </ng-template>
+          </div>
+          <app-primary-button 
+            [label]="'Cart (' + cartService.getCartItems()().length + ')'" 
+            (buttonClicked)="navigateToCart()"
+            class="ms-2"
+          />
+        </div>
+      </div>
+    </div>
+  </nav>

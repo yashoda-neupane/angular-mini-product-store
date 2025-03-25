@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Users List</h2>
+    
+    @if (loading) {
+      <div class="card mb-3">
+        <div class="card-body">
+          Loading users...
+        </div>
+      </div>
+    }
+  
+    @if (error) {
+      <div class="card mb-3">
+        <div class="card-body text-danger">
+          Error loading users: {{ error }}
+        </div>
+      </div>
+    }
+  
+    @if (!loading && !error) {
+        <div class="row">
+            <div *ngFor="let user of users; trackBy: trackByUserId" class="col-md-4 mb-3">
+              <app-user-card [user]="user"></app-user-card>
+            </div>
+          </div>
+    }
+  </div>

@@ -1,6 +1,7 @@
 # MiniProductStore
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+This 
 
 This project is a simple product store made with Angular. A visitor can perform the below functionanlity
 * View list of products
@@ -12,6 +13,13 @@ This project is a simple product store made with Angular. A visitor can perform 
 * If user is logged in as admin, user can-
     - add the product using the api
     - view all the users
+
+The application is hosted on vercel and you can view it here: 
+[Live Demo](https://angular-mini-product-store-jovzqy992.vercel.app/home)
+
+![Products List](src/assets/products.png)
+![Shopping Cart](src/assets/cart.png)
+
 
 ## Development server
 

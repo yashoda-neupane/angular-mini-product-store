@@ -42,7 +42,7 @@ export class AddProductComponent {
           console.log('Product added successfully:', response);
           this.isSubmitting = false;
           this.productForm.reset({ price: 0.1 }); 
-          this.router.navigate(['/']); // Redirect to home
+          this.router.navigate(['/']); 
         },
         error: (error) => {
           console.error('Error adding product:', error);

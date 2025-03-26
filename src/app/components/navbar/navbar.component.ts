@@ -18,7 +18,6 @@ export class NavbarComponent {
   cartService = inject(CartService);
   router = inject(Router);
 
-  username: string = this.authService.username() ?? '';
 
   logout() {
     this.authService.logout();

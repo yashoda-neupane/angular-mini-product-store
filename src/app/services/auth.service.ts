@@ -10,7 +10,7 @@ export class AuthService {
 
   private isLoggedIn = false;
   private user = { username: 'admin', password: 'password' }; // Example credentials
-
+  username = signal<string | null>(null);
 
   login(username: string, password: string): boolean {
     if (username === this.user.username && password === this.user.password) {
@@ -30,7 +30,4 @@ export class AuthService {
     return this.isLoggedIn || localStorage.getItem('isAuthenticated') === 'true';
   }
 
-  username(): string | null {
-    return this.isLoggedIn ? this.user.username : null;
-  }
 }

@@ -6,10 +6,10 @@ import { Product } from '../models/product.model';
 })
 export class CartService {
 
- // Private writable signal to manage cart items
+ 
  private cartItems = signal<Product[]>(this.loadCartFromLocalStorage());
 
- // Public readonly signal for components to subscribe to
+ 
  getCartItems() {
    return this.cartItems.asReadonly();
  }
@@ -17,7 +17,7 @@ export class CartService {
  addToCart(product: Product) {
   this.cartItems.update(items => {
     const updatedItems = [...items, product];
-    this.saveCartToLocalStorage(updatedItems); // Save to localStorage
+    this.saveCartToLocalStorage(updatedItems); 
     return updatedItems;
   });
 }
@@ -36,10 +36,10 @@ private saveCartToLocalStorage(cart: Product[]) {
 
   clearCart() {
     this.cartItems.set([]);
-    localStorage.removeItem('cart'); // Clear from localStorage
+    localStorage.removeItem('cart'); 
   }
 
-  // Load cart from localStorage
+  
   loadCartFromLocalStorage(): Product[] {
     const cart = localStorage.getItem('cart');
     return cart ? JSON.parse(cart) : [];

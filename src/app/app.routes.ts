@@ -4,17 +4,20 @@ import { CartComponent } from './components/pages/cart/cart.component';
 import { AddProductComponent } from './components/pages/add-product/add-product.component';
 import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
+
+     { 
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full' 
+    }, 
+    
     { 
         path: 'login', 
         component: LoginComponent
      },
-     { 
-        path: '', 
-        redirectTo: 'home', 
-        pathMatch: 'full' // Redirect to login by default
-    }, 
 
     {
         path: 'home',
@@ -28,11 +31,13 @@ export const routes: Routes = [
 
     {
         path : 'product',
-        component: AddProductComponent
+        component: AddProductComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'users',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: '**', redirectTo: '' // Redirect to home page if the URL is not found

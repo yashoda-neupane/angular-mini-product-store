@@ -29,7 +29,6 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers()
       .subscribe({
         next: (users) => {
-          console.log('API Response:', users); // Log the API response
           this.users = users;
           this.loading = false;
         },
@@ -42,7 +41,6 @@ export class UsersComponent implements OnInit {
   }
 
   trackByUserId(index: number, user: User): number {
-    console.log('User in trackBy:', user); // Log each user
     return user.id;
   }
 }

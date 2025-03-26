@@ -4,11 +4,17 @@
       <a class="navbar-brand fw-bold" routerLink="/">Store</a>
   
       <!-- Toggler for mobile -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-  
       <!-- Navbar content -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
@@ -30,10 +36,10 @@
   
         <!-- Right-side content -->
         <div class="d-flex align-items-center">
-          <div class="navbar-text me-3">
+          <div class="navbar-text me-5">
             <ng-container *ngIf="authService.isAuthenticated(); else loginLink">
-              Welcome, {{ username }}!
-              <button class="btn btn-link text-decoration-none" (click)="logout()">Logout</button>
+                Welcome!
+              <button class="btn btn-link me-4 text-decoration-underline" (click)="logout()">Logout</button>
             </ng-container>
             <ng-template #loginLink>
               <a class="btn btn-link text-decoration-none" routerLink="/login" routerLinkActive="active">Login</a>

@@ -50,6 +50,7 @@ private saveCartToLocalStorage(cart: Product[]) {
   }
   
   getTotalPrice(): number {
-    return this.cartItems().reduce((total, item) => total + item.price, 0);
+    const total = this.cartItems().reduce((total, item) => total + item.price, 0);
+    return parseFloat(total.toFixed(2));
   }
 }

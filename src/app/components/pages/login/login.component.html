@@ -1,0 +1,48 @@
+<div class="container my-5">
+    <h2 class="mb-4">Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="login()"> <!-- Call login() on form submit -->
+      <!-- Username Field -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          [(ngModel)]="username"
+          name="username"
+          required
+          #usernameField="ngModel"
+        />
+        <!-- Validation Message for Username -->
+        <div *ngIf="usernameField.invalid && usernameField.touched" class="text-danger">
+          Username is required.
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          required
+          #passwordField="ngModel"
+        />
+        <!-- Validation Message for Password -->
+        <div *ngIf="passwordField.invalid && passwordField.touched" class="text-danger">
+          Password is required.
+        </div>
+      </div>
+  
+      <!-- Error Message for Invalid Login -->
+      <div *ngIf="errorMessage" class="text-danger mb-3">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>

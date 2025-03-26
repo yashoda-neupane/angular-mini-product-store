@@ -3,11 +3,21 @@ import { ProductListComponent } from './components/pages/product-list/product-li
 import { CartComponent } from './components/pages/cart/cart.component';
 import { AddProductComponent } from './components/pages/add-product/add-product.component';
 import { UsersComponent } from './components/users/users.component';
+import { LoginComponent } from './components/pages/login/login.component';
 
 export const routes: Routes = [
+    { 
+        path: 'login', 
+        component: LoginComponent
+     },
+     { 
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full' // Redirect to login by default
+    }, 
+
     {
-        path: '',
-        pathMatch: 'full',
+        path: 'home',
         component: ProductListComponent
     },
 
@@ -17,7 +27,7 @@ export const routes: Routes = [
     },
 
     {
-        path : 'add-product',
+        path : 'product',
         component: AddProductComponent
     },
     {

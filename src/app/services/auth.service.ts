@@ -8,33 +8,29 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 
-  private apiUrl = 'https://fakestoreapi.com/users'; // This is to get and display  users from the fake store api when the user is logged in
-  private users$;
-  users;
+  private isLoggedIn = false;
+  private user = { username: 'admin', password: 'password' }; // Example credentials
 
-  constructor(private http: HttpClient) {
-      this.users$ = this.http.get<User[]>(this.apiUrl);
-      this.users = toSignal(this.users$, { initialValue: [] });
+
+  login(username: string, password: string): boolean {
+    if (username === this.user.username && password === this.user.password) {
+      this.isLoggedIn = true;
+      localStorage.setItem('isAuthenticated', 'true');
+      return true;
+    }
+    return false;
   }
 
-  isAuthenticated = signal(false);
-    username = signal<string | null>(null);
+  logout() {
+    this.isLoggedIn = false;
+    localStorage.removeItem('isAuthenticated');
+  }
 
-    login(username: string, password: string): boolean {
-      const user = this.users().find(
-        u => u.username === username && u.password === password
-      );
-      if (user) {
-        this.isAuthenticated.set(true);
-        this.username.set(username);
-        return true;
-      }
-      return false;
-    }
+  isAuthenticated(): boolean {
+    return this.isLoggedIn || localStorage.getItem('isAuthenticated') === 'true';
+  }
 
-    logout() {
-      this.isAuthenticated.set(false);
-      this.username.set(null);
-    }
-
+  username(): string | null {
+    return this.isLoggedIn ? this.user.username : null;
+  }
 }

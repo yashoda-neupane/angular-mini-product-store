@@ -5,12 +5,13 @@ import { CartService } from '../../services/cart.service';
 import { PrimaryButtonComponent } from "../primary-button/primary-button.component";
 import { RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  imports: [PrimaryButtonComponent, RouterModule]
+  imports: [PrimaryButtonComponent, RouterModule, CommonModule]
 })
 export class NavbarComponent {
   authService = inject(AuthService);

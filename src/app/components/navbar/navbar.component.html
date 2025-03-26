@@ -20,10 +20,10 @@
           </li>
           <ng-container *ngIf="authService.isAuthenticated()">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/add-product" routerLinkActive="active">Add Product</a>
+              <a class="nav-link" routerLink="/product" routerLinkActive="active">Add Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/users" routerLinkActive="active">Dashboard</a>
+              <a class="nav-link" routerLink="/users" routerLinkActive="active">User Dashboard</a>
             </li>
           </ng-container>
         </ul>
@@ -36,7 +36,7 @@
               <button class="btn btn-link text-decoration-none" (click)="logout()">Logout</button>
             </ng-container>
             <ng-template #loginLink>
-              <a class="btn btn-link text-decoration-none" routerLink="/login">Login</a>
+              <a class="btn btn-link text-decoration-none" routerLink="/login" routerLinkActive="active">Login</a>
             </ng-template>
           </div>
           <app-primary-button 

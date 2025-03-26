@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
+This project is a simple product store made with Angular. A visitor can perform the below functionanlity
+* View list of products
+* Add products to cart
+* View products in cart
+* Delete product from cart
+* Login
+* Logout
+* If user is logged in as admin, user can-
+    - add the product using the api
+    - view all the users
+
 ## Development server
 
 To start a local development server, run:
